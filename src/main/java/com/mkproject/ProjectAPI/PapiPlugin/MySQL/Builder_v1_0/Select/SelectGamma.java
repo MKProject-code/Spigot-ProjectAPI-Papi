@@ -1,10 +1,14 @@
-package com.mkproject.ProjectAPI.PapiPlugin.MySQL.Builder_v1_0;
+package com.mkproject.ProjectAPI.PapiPlugin.MySQL.Builder_v1_0.Select;
 
-public final class SelectGamma extends BuilderElement {
+import com.mkproject.ProjectAPI.PapiPlugin.MySQL.Builder_v1_0.BuilderAbstractController;
+import com.mkproject.ProjectAPI.PapiPlugin.MySQL.Builder_v1_0.BuilderAbstractElement;
+import com.mkproject.ProjectAPI.PapiPlugin.MySQL.Builder_v1_0.BuilderUtils;
+
+public final class SelectGamma extends BuilderAbstractElement {
 
     boolean includePrefix;
 
-    protected SelectGamma(Builder builder, boolean includePrefix) {
+    protected SelectGamma(BuilderAbstractController builder, boolean includePrefix) {
         super(builder);
         this.includePrefix = includePrefix;
     }
@@ -14,8 +18,8 @@ public final class SelectGamma extends BuilderElement {
     }
 
     public SelectGamma add(String table, String column, String alias) {
-        table = BuilderUtils.getFormatTable(table);
-        column = BuilderUtils.getFormatColumn(column);
+        table = BuilderUtils.formatTable(table);
+        column = BuilderUtils.formatColumn(column);
 
         this.addBuilderSql(",", table + "." + column + (alias == null ? "" : " AS " + alias));
         return new SelectGamma(this.getBuilder(), false);
@@ -26,8 +30,8 @@ public final class SelectGamma extends BuilderElement {
     }
 
     public SelectGamma addCount(String table, String column, String alias) {
-        table = BuilderUtils.getFormatTable(table);
-        column = BuilderUtils.getFormatColumn(column);
+        table = BuilderUtils.formatTable(table);
+        column = BuilderUtils.formatColumn(column);
 
         this.addBuilderSql(",", "COUNT(" + table + "." + column + ")" + (alias == null ? "" : " AS " + alias));
         return new SelectGamma(this.getBuilder(), false);
@@ -38,8 +42,8 @@ public final class SelectGamma extends BuilderElement {
     }
 
     public SelectGamma addAvg(String table, String column, String alias) {
-        table = BuilderUtils.getFormatTable(table);
-        column = BuilderUtils.getFormatColumn(column);
+        table = BuilderUtils.formatTable(table);
+        column = BuilderUtils.formatColumn(column);
 
         this.addBuilderSql(",", "AVG(" + table + "." + column + ")" + (alias == null ? "" : " AS " + alias));
         return new SelectGamma(this.getBuilder(), false);
@@ -50,8 +54,8 @@ public final class SelectGamma extends BuilderElement {
     }
 
     public SelectGamma addSum(String table, String column, String alias) {
-        table = BuilderUtils.getFormatTable(table);
-        column = BuilderUtils.getFormatColumn(column);
+        table = BuilderUtils.formatTable(table);
+        column = BuilderUtils.formatColumn(column);
 
         this.addBuilderSql(",", "SUM(" + table + "." + column + ")" + (alias == null ? "" : " AS " + alias));
         return new SelectGamma(this.getBuilder(), false);

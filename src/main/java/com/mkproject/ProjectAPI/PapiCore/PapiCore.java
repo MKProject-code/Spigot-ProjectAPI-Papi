@@ -1,6 +1,7 @@
 package com.mkproject.ProjectAPI.PapiCore;
 
-import com.mkproject.ProjectAPI.PapiPlugin.MySQL.Builder_v1_0.Builder;
+import com.mkproject.ProjectAPI.PapiPlugin.MySQL.Builder_v1_0.Select.BuilderSelect;
+import com.mkproject.ProjectAPI.PapiPlugin.MySQL.Builder_v1_0.Insert.BuilderInsert;
 import com.mkproject.ProjectAPI.PapiPlugin.PapiPlugin;
 import org.bukkit.Bukkit;
 
@@ -33,15 +34,13 @@ public final class PapiCore extends PapiPlugin {
         } catch (SQLException | ClassNotFoundException throwables) {
             throwables.printStackTrace();
         }
-        this.getLogger().warning("TESTTTTTTTTTTTTTTTTT ENABLED @@@@@@@@@@@@@@");
-        System.out.println("TEST ENABLE *********************");
 
         //test
         Bukkit.getScheduler().runTask(this, new Runnable() {
             @Override
             public void run() {
                 PapiCore.getPlugin().getLogger().warning("!!!!!!!!!!!!!!!!!!!!!! TEST !!!!!!!!!!!!!!!!!!!!!!");
-                PapiCore.getPlugin().getLogger().warning(new Builder()
+                PapiCore.getPlugin().getLogger().warning(new BuilderSelect()
                         .select()
                             .add("u", "username")
                             .addAvg("p","id","numer")
@@ -57,6 +56,8 @@ public final class PapiCore extends PapiPlugin {
                             .addDesc("u","id")
                             .addAsc("u","registerAt")
                         .end().getBeautyQuery());
+
+//                new BuilderInsert()
             }
         });
     }

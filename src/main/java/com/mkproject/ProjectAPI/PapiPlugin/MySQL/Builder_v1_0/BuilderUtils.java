@@ -1,16 +1,13 @@
 package com.mkproject.ProjectAPI.PapiPlugin.MySQL.Builder_v1_0;
 
 public final class BuilderUtils {
-
-    protected static String getFormatColumn(String column) {
+    public static String formatColumn(String column) {
         return "`" + column + "`";
     }
-
-    protected static String getFormatTable(String table) {
+    public static String formatTable(String table) {
         return "`" + table + "`";
     }
-
-    public static String getFormatValue(String value) {
+    public static String formatValue(String value) {
         return "'" + value + "'";
     }
 }

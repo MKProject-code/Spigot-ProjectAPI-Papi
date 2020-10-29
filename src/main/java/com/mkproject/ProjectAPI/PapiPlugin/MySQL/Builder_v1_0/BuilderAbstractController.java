@@ -1,8 +1,28 @@
 package com.mkproject.ProjectAPI.PapiPlugin.MySQL.Builder_v1_0;
 
-public final class Builder {
+import com.mkproject.ProjectAPI.PapiPlugin.MySQL.Builder_v1_0.Insert.InsertIntoAlfa;
+import com.mkproject.ProjectAPI.PapiPlugin.MySQL.Builder_v1_0.Select.BuilderSelect;
 
-    enum BeautyQueryElement {
+public class BuilderAbstractController {
+
+    private String query = "";
+
+    public void addSql(String sql) {
+        if (this.query.equals("")) this.query += " ( " + sql;
+        else this.query += (sql.indexOf(",") == 0 ? "" : " ") + sql;
+    }
+
+    public BuilderAbstractController end() {
+        this.query += " ) ";
+        return this;
+    }
+
+    public String getQuery() {
+        return this.query + ";";
+    }
+
+    // For beauty
+    private enum BeautyQueryElement {
         UNION,
         SELECT,
         FROM,
@@ -16,26 +36,6 @@ public final class Builder {
         RIGHT_OUTER_JOIN,
         FULL_OUTER_JOIN,
         ORDER_BY,
-    }
-
-    private String query = "";
-
-    public SelectAlfa select() {
-        return new SelectAlfa(this);
-    }
-
-    protected void addSql(String sql) {
-        if (this.query.equals("")) this.query += " ( " + sql;
-        else this.query += (sql.indexOf(",") == 0 ? "" : " ") + sql;
-    }
-
-    protected Builder end() {
-        this.query += " ) ";
-        return this;
-    }
-
-    public String getQuery() {
-        return this.query + ";";
     }
 
     public String getBeautyQuery() {
