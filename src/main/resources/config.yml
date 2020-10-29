@@ -1,6 +1,6 @@
 MySQL:
-  Hostname: '192.168.1.10:6736'
-  Username: 'minecraft_server_develop'
-  Password: 'Saf0XflbWV8ATL1w'
-  Database: 'minecraft_server_develop'
+  Hostname: 'hostname:port'
+  Username: 'username'
+  Password: 'password'
+  Database: 'database'
   SSL: True
