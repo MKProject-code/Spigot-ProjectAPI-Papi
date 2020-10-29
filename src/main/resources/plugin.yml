@@ -1,0 +1,7 @@
+name: ProjectAPI
+version: ${project.version}
+main: com.mkproject.ProjectAPI.PapiCore.PapiCore
+api-version: 1.16
+authors: [ MasKAT ]
+description: API for MKProject plugins
+website: skyidea.pl
