@@ -36,6 +36,7 @@ public final class PapiCore extends PapiPlugin {
         this.getLogger().warning("TESTTTTTTTTTTTTTTTTT ENABLED @@@@@@@@@@@@@@");
         System.out.println("TEST ENABLE *********************");
 
+        //test
         Bukkit.getScheduler().runTask(this, new Runnable() {
             @Override
             public void run() {
