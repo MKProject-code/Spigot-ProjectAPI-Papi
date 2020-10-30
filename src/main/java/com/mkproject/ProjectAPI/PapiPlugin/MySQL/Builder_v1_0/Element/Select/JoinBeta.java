@@ -1,13 +1,18 @@
-package com.mkproject.ProjectAPI.PapiPlugin.MySQL.Builder_v1_0.Select;
+package com.mkproject.ProjectAPI.PapiPlugin.MySQL.Builder_v1_0.Element.Select;
 
-import com.mkproject.ProjectAPI.PapiPlugin.MySQL.Builder_v1_0.BuilderAbstractController;
-import com.mkproject.ProjectAPI.PapiPlugin.MySQL.Builder_v1_0.BuilderAbstractElement;
+import com.mkproject.ProjectAPI.PapiPlugin.MySQL.Builder_v1_0.AbstractController.BuilderAbstractController;
+import com.mkproject.ProjectAPI.PapiPlugin.MySQL.Builder_v1_0.AbstractController.ElementAbstractController;
+import com.mkproject.ProjectAPI.PapiPlugin.MySQL.Builder_v1_0.Build.BuilderSQLQuery;
 import com.mkproject.ProjectAPI.PapiPlugin.MySQL.Builder_v1_0.BuilderUtils;
 
-public final class JoinBeta extends BuilderAbstractElement {
+public final class JoinBeta extends ElementAbstractController {
 
     public JoinBeta(BuilderAbstractController builder) {
         super(builder);
+    }
+
+    public BuilderSQLQuery end() {
+        return (BuilderSQLQuery) this.getBuilder().end();
     }
 
     public JoinBeta and(String table, String column, String operator, String value) {
@@ -48,10 +53,6 @@ public final class JoinBeta extends BuilderAbstractElement {
 
         this.addBuilderSql("OR", sql);
         return new JoinBeta(this.getBuilder());
-    }
-
-    public BuilderSelect end() {
-        return (BuilderSelect) this.getBuilder();
     }
 
     public WhereAlfa where(String table, String column, String operator, String value) {

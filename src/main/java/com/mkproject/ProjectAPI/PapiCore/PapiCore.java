@@ -1,7 +1,8 @@
 package com.mkproject.ProjectAPI.PapiCore;
 
-import com.mkproject.ProjectAPI.PapiPlugin.MySQL.Builder_v1_0.Select.BuilderSelect;
-import com.mkproject.ProjectAPI.PapiPlugin.MySQL.Builder_v1_0.Insert.BuilderInsert;
+import com.mkproject.ProjectAPI.PapiPlugin.MySQL.ResultRow;
+import com.mkproject.ProjectAPI.PapiPlugin.MySQL.ResultRowsList;
+import com.mkproject.ProjectAPI.PapiPlugin.MySQL.ResultSQL;
 import com.mkproject.ProjectAPI.PapiPlugin.PapiPlugin;
 import org.bukkit.Bukkit;
 
@@ -28,6 +29,7 @@ public final class PapiCore extends PapiPlugin {
         String username = this.getConfig().getString("MySQL.Username");
         String password = this.getConfig().getString("MySQL.Password");
         boolean ssl = this.getConfig().getBoolean("MySQL.SSL");
+        boolean consoleDebug = this.getConfig().getBoolean("MySQL.ConsoleDebug");
 
         try {
             this.registerNewMySQL(hostname, database, username, password, ssl);
@@ -35,30 +37,41 @@ public final class PapiCore extends PapiPlugin {
             throwables.printStackTrace();
         }
 
-        //test
-        Bukkit.getScheduler().runTask(this, new Runnable() {
-            @Override
-            public void run() {
-                PapiCore.getPlugin().getLogger().warning("!!!!!!!!!!!!!!!!!!!!!! TEST !!!!!!!!!!!!!!!!!!!!!!");
-                PapiCore.getPlugin().getLogger().warning(new BuilderSelect()
-                        .select()
-                            .add("u", "username")
-                            .addAvg("p","id","numer")
-                            .addCount("u","id","ilosc")
-                        .from()
-                            .add("users", "u")
-                            .add("products","p")
-                        .innerJoin("orders","o")
-                            .on("o","id","=","1")
-                        .where("u", "username", "=", "1")
-                            .and("p","productName","LIKE","%2%")
-                        .orderBy()
-                            .addDesc("u","id")
-                            .addAsc("u","registerAt")
-                        .end().getBeautyQuery());
+        this.getMySQL().setConsoleDebug(true);
 
-//                new BuilderInsert()
+        //test
+        Bukkit.getScheduler().runTask(this, () -> {
+            PapiCore.getPlugin().getLogger().warning("!!!!!!!!!!!!!!!!!!!!!! TEST !!!!!!!!!!!!!!!!!!!!!!");
+            ResultSQL rs = getMySQL().builder_v1_0()
+                    .select()
+                    .add("u", "realname")
+                    .from()
+                    .add("MKP_LoginManager_Users", "u")
+                    .end().execute();
+
+            if (rs.isError()) {
+                PapiCore.getPlugin().getLogger().warning("ERROR ResultSQL==null");
+            } else {
+                ResultRowsList list = rs.getResultArrayList();
+                if (list == null)
+                    PapiCore.getPlugin().getLogger().warning("ERROR getArrayList()==null");
+                else {
+                    PapiCore.getPlugin().getLogger().warning("Size=" + list);
+                    for (ResultRow row : list) {
+                        row.getString(1);
+                    }
+                }
+                rs.close();
             }
+            try {
+                int id = getMySQL().builder_v1_0().insertInto("MKP_LoginManager_Logs").columns("userid", "login_ip").valuesArray(new String[]{"888", null}).end().execute();
+                PapiCore.getPlugin().getLogger().warning("dodano! id="+id);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+
+            PapiCore.getPlugin().getLogger().warning("OK?");
+//                new BuilderInsert().insertInto("users").addColumns("username","createdAt").addValuesArray().end().getBeautyQuery();
         });
     }
 
