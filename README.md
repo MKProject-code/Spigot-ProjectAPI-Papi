@@ -5,7 +5,22 @@
 
 ## Implementation as a bukkit plugin
 ```
+import com.mkproject.ProjectAPI.PapiPlugin.PapiPlugin;
 
+public final class PapiCore extends PapiPlugin
+{
+    private static PapiCore plugin;
+
+    @Override
+    public void onEnable() {
+        // TODO: Plugin run logic
+    }
+
+    @Override
+    public void onDisable() {
+        // TODO: Plugin shutdown logic
+    }
+}
 ```
 
 ### Builder SQL example:
