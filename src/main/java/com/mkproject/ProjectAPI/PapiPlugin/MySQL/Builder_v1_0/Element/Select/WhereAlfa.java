@@ -1,13 +1,18 @@
-package com.mkproject.ProjectAPI.PapiPlugin.MySQL.Builder_v1_0.Select;
+package com.mkproject.ProjectAPI.PapiPlugin.MySQL.Builder_v1_0.Element.Select;
 
-import com.mkproject.ProjectAPI.PapiPlugin.MySQL.Builder_v1_0.BuilderAbstractController;
-import com.mkproject.ProjectAPI.PapiPlugin.MySQL.Builder_v1_0.BuilderAbstractElement;
+import com.mkproject.ProjectAPI.PapiPlugin.MySQL.Builder_v1_0.AbstractController.BuilderAbstractController;
+import com.mkproject.ProjectAPI.PapiPlugin.MySQL.Builder_v1_0.AbstractController.ElementAbstractController;
+import com.mkproject.ProjectAPI.PapiPlugin.MySQL.Builder_v1_0.Build.BuilderSQLQuery;
 import com.mkproject.ProjectAPI.PapiPlugin.MySQL.Builder_v1_0.BuilderUtils;
 
-public final class WhereAlfa extends BuilderAbstractElement {
+public final class WhereAlfa extends ElementAbstractController {
 
     public WhereAlfa(BuilderAbstractController builder) {
         super(builder);
+    }
+
+    public BuilderSQLQuery end() {
+        return (BuilderSQLQuery) this.getBuilder().end();
     }
 
     public WhereAlfa and(String table, String column, String operator, String value) {
@@ -52,9 +57,5 @@ public final class WhereAlfa extends BuilderAbstractElement {
 
     public OrderByAlfa orderBy() {
         return new OrderByAlfa(this.getBuilder());
-    }
-
-    public BuilderSelect end() {
-        return (BuilderSelect) this.getBuilder().end();
     }
 }

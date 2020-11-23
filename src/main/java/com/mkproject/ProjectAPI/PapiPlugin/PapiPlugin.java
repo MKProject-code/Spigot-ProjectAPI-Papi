@@ -81,7 +81,7 @@ public abstract class PapiPlugin extends JavaPlugin {
      * @throws ClassNotFoundException the class not found exception
      */
     public void registerNewMySQL(String hostname, String database, String username, String password, boolean ssl) throws SQLException, ClassNotFoundException {
-        this.papiMySQL = new PapiMySQL(hostname, database, username, password, ssl);
+        this.papiMySQL = new PapiMySQL(this, hostname, database, username, password, ssl);
     }
 
     /**
@@ -194,6 +194,4 @@ public abstract class PapiPlugin extends JavaPlugin {
             this.saveResource(fileName + ".yml", false);
         }
     }
-
-
 }

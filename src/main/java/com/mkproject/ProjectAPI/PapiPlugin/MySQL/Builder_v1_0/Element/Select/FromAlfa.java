@@ -1,10 +1,10 @@
-package com.mkproject.ProjectAPI.PapiPlugin.MySQL.Builder_v1_0.Select;
+package com.mkproject.ProjectAPI.PapiPlugin.MySQL.Builder_v1_0.Element.Select;
 
-import com.mkproject.ProjectAPI.PapiPlugin.MySQL.Builder_v1_0.BuilderAbstractController;
-import com.mkproject.ProjectAPI.PapiPlugin.MySQL.Builder_v1_0.BuilderAbstractElement;
+import com.mkproject.ProjectAPI.PapiPlugin.MySQL.Builder_v1_0.AbstractController.BuilderAbstractController;
+import com.mkproject.ProjectAPI.PapiPlugin.MySQL.Builder_v1_0.AbstractController.ElementAbstractController;
 import com.mkproject.ProjectAPI.PapiPlugin.MySQL.Builder_v1_0.BuilderUtils;
 
-public final class FromAlfa extends BuilderAbstractElement {
+public final class FromAlfa extends ElementAbstractController {
 
     protected FromAlfa(BuilderAbstractController builder) {
         super(builder);
