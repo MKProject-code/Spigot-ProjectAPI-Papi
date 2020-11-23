@@ -32,5 +32,10 @@ ResultSQL resultSQL = papiMySQL.builder_v1_0().select().add("u","username","user
 
 #### INSERT INTO
 ```
-ResultSQL resultSQL = papiMySQL.builder_v1_0().insertInto("users").columns("email","name").valuesArray(new String[] { "test@test.pl", "Test Test" }).end().execute();
+ResultSQL resultSQL = papiMySQL.builder_v1_0()
+.insertInto("users")
+.columns("email","name")
+.valuesArray(new String[] { "test@test.pl", "Test Test" })
+.end()
+.execute();
 ```
