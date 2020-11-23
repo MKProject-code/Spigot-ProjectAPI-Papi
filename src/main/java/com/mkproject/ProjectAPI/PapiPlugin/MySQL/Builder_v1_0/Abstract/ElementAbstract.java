@@ -1,12 +1,12 @@
-package com.mkproject.ProjectAPI.PapiPlugin.MySQL.Builder_v1_0;
+package com.mkproject.ProjectAPI.PapiPlugin.MySQL.Builder_v1_0.AbstractController;
 
-import com.mkproject.ProjectAPI.PapiPlugin.MySQL.Builder_v1_0.Select.BuilderSelect;
+import com.mkproject.ProjectAPI.PapiPlugin.MySQL.Builder_v1_0.AbstractController.BuilderAbstractController;
 
-public abstract class BuilderAbstractElement {
+public abstract class ElementAbstractController {
 
     private final BuilderAbstractController builder;
 
-    protected BuilderAbstractElement(BuilderAbstractController builder) {
+    protected ElementAbstractController(BuilderAbstractController builder) {
         this.builder = builder;
     }
 

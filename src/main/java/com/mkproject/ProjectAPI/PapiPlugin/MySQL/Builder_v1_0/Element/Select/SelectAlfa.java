@@ -1,16 +1,17 @@
-package com.mkproject.ProjectAPI.PapiPlugin.MySQL.Builder_v1_0.Select;
+package com.mkproject.ProjectAPI.PapiPlugin.MySQL.Builder_v1_0.Element.Select;
 
-import com.mkproject.ProjectAPI.PapiPlugin.MySQL.Builder_v1_0.BuilderAbstractController;
-import com.mkproject.ProjectAPI.PapiPlugin.MySQL.Builder_v1_0.BuilderAbstractElement;
+import com.mkproject.ProjectAPI.PapiPlugin.MySQL.Builder_v1_0.AbstractController.ElementAbstractController;
 import com.mkproject.ProjectAPI.PapiPlugin.MySQL.Builder_v1_0.BuilderUtils;
 
-public final class SelectGamma extends BuilderAbstractElement {
+public final class SelectAlfa extends ElementAbstractController {
 
-    boolean includePrefix;
-
-    protected SelectGamma(BuilderAbstractController builder, boolean includePrefix) {
+    protected SelectAlfa(BuilderSelect builder) {
         super(builder);
-        this.includePrefix = includePrefix;
+    }
+
+    public SelectBeta district() {
+        this.addBuilderSql("SELECT", "DISTRICT");
+        return new SelectBeta(this.getBuilder());
     }
 
     public SelectGamma add(String table, String column) {
@@ -21,7 +22,7 @@ public final class SelectGamma extends BuilderAbstractElement {
         table = BuilderUtils.formatTable(table);
         column = BuilderUtils.formatColumn(column);
 
-        this.addBuilderSql(",", table + "." + column + (alias == null ? "" : " AS " + alias));
+        this.addBuilderSql("SELECT", table + "." + column + (alias == null ? "" : " AS " + alias));
         return new SelectGamma(this.getBuilder(), false);
     }
 
@@ -33,7 +34,7 @@ public final class SelectGamma extends BuilderAbstractElement {
         table = BuilderUtils.formatTable(table);
         column = BuilderUtils.formatColumn(column);
 
-        this.addBuilderSql(",", "COUNT(" + table + "." + column + ")" + (alias == null ? "" : " AS " + alias));
+        this.addBuilderSql("SELECT", "COUNT(" + table + "." + column + ")" + (alias == null ? "" : " AS " + alias));
         return new SelectGamma(this.getBuilder(), false);
     }
 
@@ -45,7 +46,7 @@ public final class SelectGamma extends BuilderAbstractElement {
         table = BuilderUtils.formatTable(table);
         column = BuilderUtils.formatColumn(column);
 
-        this.addBuilderSql(",", "AVG(" + table + "." + column + ")" + (alias == null ? "" : " AS " + alias));
+        this.addBuilderSql("SELECT", "AVG(" + table + "." + column + ")" + (alias == null ? "" : " AS " + alias));
         return new SelectGamma(this.getBuilder(), false);
     }
 
@@ -57,11 +58,7 @@ public final class SelectGamma extends BuilderAbstractElement {
         table = BuilderUtils.formatTable(table);
         column = BuilderUtils.formatColumn(column);
 
-        this.addBuilderSql(",", "SUM(" + table + "." + column + ")" + (alias == null ? "" : " AS " + alias));
+        this.addBuilderSql("SELECT", "SUM(" + table + "." + column + ")" + (alias == null ? "" : " AS " + alias));
         return new SelectGamma(this.getBuilder(), false);
-    }
-
-    public FromAlfa from() {
-        return new FromAlfa(this.getBuilder());
     }
 }
