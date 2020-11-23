@@ -2,7 +2,7 @@
 
 ### Compatible with Spigot 1.16
 ### DEV version! Do not use it in a production deployment yet!
-### Release planned in 2021..
+### Release planned in 2021...
 
 ## Implementation as a bukkit plugin
 ```
