@@ -28,20 +28,20 @@ public final class PapiCore extends PapiPlugin
 #### SELECT
 ```
 ResultSQL resultSQL = papiMySQL.builder_v1_0()
-.select()
-.add("u","username","user")
-.from()
-.add("users","u")
-.end()
-.execute();
+    .select()
+    .add("u","username","user")
+    .from()
+    .add("users","u")
+    .end()
+    .execute();
 ```
 
 #### INSERT INTO
 ```
 ResultSQL resultSQL = papiMySQL.builder_v1_0()
-.insertInto("users")
-.columns("email","name")
-.valuesArray(new String[] { "test@test.pl", "Test Test" })
-.end()
-.execute();
+    .insertInto("users")
+    .columns("email","name")
+    .valuesArray(new String[] { "test@test.pl", "Test Test" })
+    .end()
+    .execute();
 ```
